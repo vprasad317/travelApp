@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { ApiService } from './service/api.service';
+import { ApiUrlsService } from './service/api-urls.service';
+import { SearchService } from './service/search.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'travelApp';
+  constructor(public service: SearchService, public urls: ApiUrlsService) {
+    this.service.getUserInfo();
+  }
 }

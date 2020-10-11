@@ -1,0 +1,18 @@
+.search-wrapper {
+    background-image: url('../../assets/images/background-bg.jpg');
+    background-size: cover;
+    height: 100%;
+}
+.search-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0,0,0,.1);
+}
+.header-txt {
+    color: #ffffff;
+    position:relative;
+}

@@ -1,0 +1,53 @@
+<div class="search-wrapper d-flex flex-column align-items-center justify-content-center">
+    <div class="text-center mb-3 pt-5 header-txt">
+        <h1>Flights Search</h1>
+    </div>
+
+    <mat-card class="d-flex align-items-center justify-content-center mx-5">
+        <div class="from-lbl mr-3">
+            <mat-form-field class="example-form-field">
+                <mat-label>From</mat-label>
+                <input type="text" placeholder="Enter City" aria-label="Number" matInput [formControl]="originFrmCtrl"
+                    [matAutocomplete]="auto">
+                    <mat-hint>Try BLR</mat-hint>
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of airportsList" [value]="option.IATA_code + '-' + option.city_name">
+                        {{option.IATA_code}} {{'-'}} {{ option.city_name}}
+                    </mat-option>
+                    
+                </mat-autocomplete>
+                <button mat-button matSuffix mat-icon-button>
+                    <mat-icon>flight_takeoff</mat-icon>
+                  </button>
+            </mat-form-field>
+        </div>
+        <div class="tripType-lbl mr-3">
+            <mat-form-field class="example-form-field">
+                <mat-label>Journey Type</mat-label>
+                <input type="text" placeholder="Journey Type" matInput [formControl]="tripFrmCtrl"
+                    [matAutocomplete]="tripData">
+                    <mat-hint>One Way or Round Trip</mat-hint>
+                <mat-autocomplete #tripData="matAutocomplete">
+                    <mat-option *ngFor="let type of tripType" [value]="type">
+                        {{type}}
+                    </mat-option>
+                    
+                </mat-autocomplete>
+                <button mat-button matSuffix mat-icon-button>
+                    <mat-icon>keyboard_arrow_down</mat-icon>
+                  </button>
+            </mat-form-field>
+        </div>
+        <div class="date-ctrl mr-3">
+            <mat-form-field>
+                <mat-label>Departure</mat-label>
+                <input matInput [matDatepicker]="picker" [formControl]="dateFrmCtrl">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+        </div>
+        <div class="btn-ctrl">
+            <button [disabled]="originFrmCtrl.value == '' || originFrmCtrl.errors" mat-raised-button color="primary" (click)="getFlightDetails()">Search</button>
+        </div>
+    </mat-card>
+    </div>
